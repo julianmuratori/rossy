@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Episodes from './Components/Episodes';
+
+// COMPONENTS
+import UserLogin from "./Components/UserLogin";
+
+// import Episodes from './Components/Episodes';
+
 
 class App extends Component {
   state = {
-    episodes: []
+    episodes: [],
+    paintingDetails: []
   };
   
   refresh = () => {
@@ -24,7 +30,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.episodes.map(episode => <Episodes {...episode} />)}
+        <UserLogin />
       </div>
     )
   }
