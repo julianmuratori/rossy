@@ -5,7 +5,11 @@ class DetailSearch extends Component {
     render() {
         return (
             <div>
-                <h1>HI</h1>
+                {this.props.details.map(detail => {
+                    return (
+                        <button>{detail}</button>
+                    )
+                })}
             </div>
         )
     }

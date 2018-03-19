@@ -29,7 +29,7 @@ class App extends Component {
       const data = res.data;
 
       if (data.payload) {
-        this.setState({ paintingDetails: data.payload[1].details })
+        this.setState({ paintingDetails: data.payload[0].details })
       }
     })
   }
@@ -41,8 +41,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <UserLogin /> */}
-        <DetailSearch />
+        <UserLogin />
+        <DetailSearch details={this.state.paintingDetails}/>
       </div>
     )
   }
