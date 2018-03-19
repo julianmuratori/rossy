@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Container, Box } from 'bloomer';
 
 // COMPONENTS
 import UserLogin from "./Components/UserLogin";
@@ -40,10 +41,10 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
+      <Container className="App">
         {/* <UserLogin /> */}
         <DetailSearch details={this.state.paintingDetails}/>
-      </div>
+      </Container>
     )
   }
 };

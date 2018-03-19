@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Control, Checkbox } from 'bloomer';
 
-const DetailButton = (props) => {
-    return (
-        <div>
-        <input type="radio" value={props.detail} id={props.detail}/>
-        <label for={props.detail}>{props.detail}</label>
-        </div>
-    )
+
+const selectedDetails = []
+
+class DetailButton extends Component  {
+    
+    checked(event) {
+        const detail = event.target.value;
+        
+        if (!selectedDetails.includes(detail)) {
+            selectedDetails.push(detail)
+        }
+        console.log(selectedDetails);
+                
+    }
+    render() {
+        return (
+            <Control>
+                <Checkbox onChange={(e) => this.checked(e)} value={this.props.detail}>{this.props.detail}</Checkbox>
+            </Control>
+        )
+    }
 }
 
 export default DetailButton;
+

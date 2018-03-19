@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import DetailButton from './DetailButton';
+import { Field, Button } from 'bloomer';
+
 
 class DetailSearch extends Component {
 
+    
     submitSearch(event) {
         event.preventDefault();
         console.log("hi");
@@ -11,13 +14,14 @@ class DetailSearch extends Component {
 
     render() {
         return (
-            <form onSubmit={(e) => this.submitSearch(e)}> 
+            <Field onSubmit={(e) => this.submitSearch(e)}> 
                 {this.props.details.map(detail => {
                     return (
                         <DetailButton detail={detail}/>
                     )
                 })}
-            </form>
+                <Button>Submit</Button>
+            </Field>
         )
     }
 }
