@@ -41,7 +41,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <UserLogin />
+        {/* <UserLogin /> */}
         <DetailSearch details={this.state.paintingDetails}/>
       </div>
     )
