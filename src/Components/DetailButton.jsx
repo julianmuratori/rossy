@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
-import { Control, Checkbox } from 'bloomer';
+import { Checkbox } from 'bloomer';
 
+class DetailButton extends Component {
+  
+    state = {
+        isChecked: false
+    }
 
-const selectedDetails = []
-
-class DetailButton extends Component  {
-    
-    checked(event) {
-        const detail = event.target.value;
+    checked = () => {
+        const { handleCheckboxChange, detail } = this.props;
+        this.setState(({ isChecked }) => ({ isChecked: !isChecked }));
         
-        if (!selectedDetails.includes(detail)) {
-            selectedDetails.push(detail)
-        }
-        console.log(selectedDetails);
-                
+        handleCheckboxChange(detail);
     }
-    render() {
-        return (
-            <Control>
-                <Checkbox onChange={(e) => this.checked(e)} value={this.props.detail}>{this.props.detail}</Checkbox>
-            </Control>
-        )
-    }
+
+  render() {
+      const { isChecked } = this.state;
+    return (
+        <Checkbox onChange={e => this.checked(e)} checked={isChecked}>
+          {this.props.detail}
+        </Checkbox>
+    );
+  }
 }
 
 export default DetailButton;

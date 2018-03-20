@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Container, Box } from 'bloomer';
+import { Container } from 'bloomer';
 
 // COMPONENTS
-import UserLogin from "./Components/UserLogin";
+// import UserLogin from "./Components/UserLogin";
 import DetailSearch from './Components/DetailSearch';
 
 // import Episodes from './Components/Episodes';
@@ -40,10 +40,12 @@ class App extends Component {
       }
   
   render() {
+    
+    const { paintingDetails, episodes } = this.state;
     return (
       <Container className="App">
         {/* <UserLogin /> */}
-        <DetailSearch details={this.state.paintingDetails}/>
+        <DetailSearch details={paintingDetails} episodes={episodes}/>
       </Container>
     )
   }
