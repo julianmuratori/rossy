@@ -17,7 +17,7 @@ class DetailSearch extends Component {
 
     // 1. VARIABLES FOR DETAILS SET
     const searchItems = this.selectedCheckboxes;
-    const sortedEpisodes = [];
+    const searchResults = [];
     const { episodes, returnedEpisodes } = this.props;
     
     // 2. GO THROUGH EACH DETAIL IN THE SET
@@ -28,12 +28,12 @@ class DetailSearch extends Component {
     // 4. VERIFY IF THE DETAIL IS PRESENT
          if (details.includes(detail) === true) {
     // 5. RETURN THE EPISODE TO A NEW ARRAY
-            sortedEpisodes.push(episode);       
+            searchResults.push(episode);       
          }
         }
       )
     })
-   returnedEpisodes(sortedEpisodes);
+   returnedEpisodes(searchResults);
   }
 
   handleCheckboxChange = detail => {
