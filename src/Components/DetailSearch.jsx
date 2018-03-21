@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import DetailButton from './DetailButton';
 import { Button } from 'bloomer';
-
 
 class DetailSearch extends Component {
   constructor() {
@@ -16,22 +14,26 @@ class DetailSearch extends Component {
 
   submitSearch = event => {
     event.preventDefault();
+
+    // 1. VARIABLES FOR DETAILS SET
     const searchItems = this.selectedCheckboxes;
+    const sortedEpisodes = [];
+    const { episodes, returnedEpisodes } = this.props;
     
-    
-    // 1. take the array of episodes
-    const { episodes } = this.props;
-    // console.log(selectedDetails)
-    episodes.forEach((episode) => {
-      
-      
+    // 2. GO THROUGH EACH DETAIL IN THE SET
+    searchItems.forEach(detail => {
+    // 3. ITERATE OVER EVERY EPISODE WITH EVERY INDIVIDUAL DETAIL
+      episodes.forEach(episode => {
+         const details = episode.details;
+    // 4. VERIFY IF THE DETAIL IS PRESENT
+         if (details.includes(detail) === true) {
+    // 5. RETURN THE EPISODE TO A NEW ARRAY
+            sortedEpisodes.push(episode);       
+         }
+        }
+      )
     })
-
-
-    // 2. filter through that array based on selected details
-    // const newEps = episodes.filter(item => item[details] === details)
-    
-    // 3. return the results in a new array
+   returnedEpisodes(sortedEpisodes);
   }
 
   handleCheckboxChange = detail => {
@@ -40,7 +42,6 @@ class DetailSearch extends Component {
     } else {
       this.selectedCheckboxes.add(detail);
     }
-    
   };
 
   render() {
