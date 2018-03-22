@@ -33,6 +33,7 @@ class DetailSearch extends Component {
         }
       )
     })
+    console.log(searchResults)
    returnedEpisodes(searchResults);
   }
 

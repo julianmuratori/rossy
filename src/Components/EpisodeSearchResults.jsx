@@ -19,9 +19,10 @@ class EpisodeSearchResults extends Component {
         return (
           <Container>
             {
-                results.map(result => {
+                results.map((result, i) => {
                     return <SingleSearchResult 
                         episode={result}
+                        key={i}
                     />
                 })
             }

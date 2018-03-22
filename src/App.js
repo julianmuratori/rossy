@@ -14,7 +14,8 @@ class App extends Component {
   state = {
     episodes: [],
     paintingDetails: [],
-    searchResults: []
+    searchResults: [],
+    userLists: []
   }
   
   constructor() {
