@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Checkbox } from 'bloomer';
+import Checkbox from "material-ui/Checkbox";
 
 class DetailButton extends Component {
   
@@ -17,9 +17,7 @@ class DetailButton extends Component {
   render() {
       const { isChecked } = this.state;
     return (
-        <Checkbox onChange={e => this.checked(e)} checked={isChecked}>
-          {this.props.detail}
-        </Checkbox>
+        <Checkbox onCheck={e => this.checked(e)} checked={isChecked} label={this.props.detail} />
     );
   }
 }

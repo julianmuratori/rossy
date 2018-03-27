@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Container } from 'bloomer';
 import SingleSearchResult from "./SingleSearchResult";
+import List from 'material-ui/List'
 
 class EpisodeSearchResults extends Component {
     state = {
@@ -17,16 +17,18 @@ class EpisodeSearchResults extends Component {
     render() {
         const { results } = this.state;
         return (
-          <Container>
+          <List>
             {
                 results.map((result, i) => {
                     return <SingleSearchResult 
                         episode={result}
                         key={i}
+                        userLists={this.props.userLists}
+                        listSelect={this.props.listSelect}
                     />
                 })
             }
-          </Container>
+          </List>
         )
     }
 }

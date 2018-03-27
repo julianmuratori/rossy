@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DetailButton from './DetailButton';
-import { Button } from 'bloomer';
+// import { Button } from 'bloomer';
+import RaisedButton from 'material-ui/RaisedButton'
 
 class DetailSearch extends Component {
   constructor() {
@@ -33,7 +34,6 @@ class DetailSearch extends Component {
         }
       )
     })
-    console.log(searchResults)
    returnedEpisodes(searchResults);
   }
 
@@ -57,7 +57,7 @@ class DetailSearch extends Component {
             />
           );
         })}
-        <Button type="submit">Submit</Button>
+        <RaisedButton type="submit">Submit</RaisedButton>
       </form>
     );
   }
