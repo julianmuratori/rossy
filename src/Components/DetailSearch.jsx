@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import DetailButton from './DetailButton';
-// import { Button } from 'bloomer';
+import React, { Component } from 'react'
+import DetailButton from './DetailButton'
 import RaisedButton from 'material-ui/RaisedButton'
 
 class DetailSearch extends Component {
