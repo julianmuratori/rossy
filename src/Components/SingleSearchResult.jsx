@@ -1,32 +1,32 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Container, Form } from 'bloomer'
 import AddToList from './AddToList'
-import SelectList from './SelectList'
-
 
 
 class SingleSearchResult extends Component {
     
     addToList(event) {
         event.preventDefault();
-        
+        console.log(this.props.episode.title)
     }
     
     render() {
-        const { title, episodeNumber, details, season, _id } = this.props.episode
+        const { title, episodeNumber, details, season } = this.props.episode;
         return (
+          <Container>
             <form onSubmit={(e) => {this.addToList(e)}}>
               <p>{title}</p>
               <p>
                 Season {season}, Episode {episodeNumber}
               </p>
               <ul>
-                {details.map((detail, key) => {
-                  return <li key={key}>{detail}</li>;
+                {details.map(detail => {
+                  return <li>{detail}</li>;
                 })}
               </ul>
-              <SelectList userLists={this.props.userLists} episodeId={_id} listSelect={this.props.listSelect}/>
               <AddToList />
             </form>
+          </Container>
         )
     }
 }

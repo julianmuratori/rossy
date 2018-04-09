@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React, { Component } from 'react'
 import DetailButton from './DetailButton'
 import RaisedButton from 'material-ui/RaisedButton'
+=======
+import React, { Component } from 'react';
+import DetailButton from './DetailButton';
+import { Button } from 'bloomer';
+>>>>>>> parent of 460d8b7... working out how to select a list and add a result to it
 
 class DetailSearch extends Component {
   constructor() {
@@ -33,6 +39,7 @@ class DetailSearch extends Component {
         }
       )
     })
+    console.log(searchResults)
    returnedEpisodes(searchResults);
   }
 
@@ -56,7 +63,7 @@ class DetailSearch extends Component {
             />
           );
         })}
-        <RaisedButton type="submit">Submit</RaisedButton>
+        <Button type="submit">Submit</Button>
       </form>
     );
   }

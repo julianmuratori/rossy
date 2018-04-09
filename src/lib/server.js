@@ -6,8 +6,6 @@ const mongoose = require("mongoose");
 const uri = "mongodb://juju:juju@ds125126.mlab.com:25126/bob-ross";
 const tokenService = require("./tokenService")
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken');
-const config = require('./config.json')
 
 // SCHEMA IMPORTS
 const Episode = require('./models/episode');
@@ -105,6 +103,7 @@ const verifyToken = (req, res, next) => {
 
 // USER ACCOUNT LOGIN
   
+<<<<<<< HEAD:src/lib/server.js
   // app.post("/login", (req, res) => {
   //   const { email, password } = req.body;
   //   User.findOne({ email }).then(user => {
@@ -144,25 +143,70 @@ const verifyToken = (req, res, next) => {
   // });
 
   app.post("/login", findUserByEmail, issueToken);
-
-  // // GETS CURRENT USER
-
-  app.get("/user/current", auth, (req, res) => {
-    const { id } = req.token.user;
-    User.findById(id).then(doc => {
-      if (doc) {
-        res.status(200).send({
-          message: "success",
-          payload: doc
-        });
+=======
+  app.post("/login", (req, res) => {
+    const { email, password } = req.body;
+    User.findOne({ email }).then(user => {
+      if (user) {
+        user
+          // compare a user's hash to the password sent in the HTTP request body
+          .comparePassword(password)
+          .then(isMatch => {
+            // if they match
+            // send back the user
+            if (isMatch) {
+              
+              // create a new token
+              const token = tokenService.create(user)
+              res.status(200).json({
+                message: "success",
+                payload: user
+              });
+            } else {
+              // no match, send back a 401
+              res.status(401).json({ message: "unauthorized" });
+            }
+          })
+          // all other errors are 500s!
+          .catch(err => {
+            res.status(500).json({
+              message: err.message
+            });
+          });
       } else {
-        res.status(401).send({
-          message: "forbidden"
+        // no user found with the posted email
+        res.status(401).json({
+          message: "unauthorized"
         });
       }
     });
   });
+>>>>>>> parent of 460d8b7... working out how to select a list and add a result to it:lib/server.js
 
+  // // GETS CURRENT USER
+
+app.get("/user/current", (req, res) => {
+  const authHeader = req.get("authorization");
+
+  if (!authHeader) {
+    res.status(401).json({
+      message: "unauthorized"
+    });
+  }
+
+  const token = authHeader.split(" ")[1]; // grab just the token
+  jwt.verify(token, config.secret, (err, decoded) => {
+    if (decoded) {
+      res.status(200).json({ decoded });
+    } else {
+      res.status(401).json({ message: "forbidden" });
+    }
+  });
+<<<<<<< HEAD:src/lib/server.js
+
+=======
+});
+>>>>>>> parent of 460d8b7... working out how to select a list and add a result to it:lib/server.js
 
 // EPISODE COLLECTION
 

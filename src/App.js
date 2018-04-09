@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
+<<<<<<< HEAD
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom"
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+=======
+import { Container } from 'bloomer';
+>>>>>>> parent of 460d8b7... working out how to select a list and add a result to it
 
 // COMPONENTS
 import UserLogin from "./Components/UserLogin"
@@ -15,41 +19,41 @@ import { getToken } from './lib/tokenService'
 
 class App extends Component {
   state = {
+<<<<<<< HEAD
     user: null,
+=======
+>>>>>>> parent of 460d8b7... working out how to select a list and add a result to it
     episodes: [],
     paintingDetails: [],
     searchResults: [],
-    userLists: {
-      Trees: [1, 2, 5],
-      Mountains: [3, 5, 7]
-    }
-  };
-
+    userLists: []
+  }
+  
   constructor() {
-    super();
+    super()
     this.returnedEpisodes = this.returnedEpisodes.bind(this);
-    this.listSelect = this.listSelect.bind(this)
   }
 
   // REFACTOR THIS INTO A SEPARATE COMPONENT AT SOME POINT
   refresh = () => {
     axios.get("/episodes").then(res => {
-      const data = res.data;
+      const data = res.data
 
       if (data.payload) {
         this.setState({ episodes: data.payload });
       }
-    });
+    })
 
     axios.get("/search").then(res => {
-      const data = res.data;
+      const data = res.data
 
       if (data.payload) {
-        this.setState({ paintingDetails: data.payload[0].details });
+        this.setState({ paintingDetails: data.payload[0].details })
       }
-    });
-  };
+    })
+  }
 
+<<<<<<< HEAD
   getCurrentUser = () => {
     // TRIES TO RETRIEVE USER'S TOKEN
     const token = getToken();
@@ -73,12 +77,12 @@ class App extends Component {
   returnedEpisodes = searchResults => {
     this.setState({ searchResults });
   };
+=======
+  returnedEpisodes = (searchResults) => { this.setState({ searchResults })};
+>>>>>>> parent of 460d8b7... working out how to select a list and add a result to it
 
-  listSelect = (list, episode) => {
-    console.log(list);
-    console.log(episode);
-  };
 
+<<<<<<< HEAD
   setUser = user => {
     this.setState({ user })
   }
@@ -87,10 +91,18 @@ class App extends Component {
     this.getCurrentUser();
     this.refresh();
   }
+=======
+>>>>>>> parent of 460d8b7... working out how to select a list and add a result to it
 
+  componentDidMount() {
+      this.refresh()
+    }
+  
   render() {
-    const { paintingDetails, episodes, searchResults, userLists } = this.state;
+    
+    const { paintingDetails, episodes, searchResults } = this.state;
     return (
+<<<<<<< HEAD
       <MuiThemeProvider className="App">
         <Router>
           <div>
@@ -134,6 +146,14 @@ class App extends Component {
         </Router>
       </MuiThemeProvider>
     );
+=======
+      <Container className="App">
+        {/* <UserLogin /> */}
+        <DetailSearch details={paintingDetails} episodes={episodes} returnedEpisodes={this.returnedEpisodes}/>
+        <EpisodeSearchResults searchResults={searchResults} />
+      </Container>
+    )
+>>>>>>> parent of 460d8b7... working out how to select a list and add a result to it
   }
 };
 
