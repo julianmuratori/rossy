@@ -66,7 +66,6 @@ class App extends Component {
       const list = selectedList
       existingLists[list].listEpisodes.push(episodeId)
     }
-    
   };
 
   componentDidMount() {
