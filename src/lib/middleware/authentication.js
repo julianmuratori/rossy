@@ -10,7 +10,8 @@ module.exports = (req, res, next) => {
     });
   }
 
-  const token = authHeader.split(" ")[1]; // grab just the token
+  // const token = authHeader.split(" ")[1]; // grab just the token
+  const token = authHeader
   jwt.verify(token, config.secret, (err, decoded) => {
     if (decoded) {
       req.token = decoded;

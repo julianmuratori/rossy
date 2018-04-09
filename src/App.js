@@ -56,7 +56,7 @@ class App extends Component {
     // IF THEY HAVE A TOKEN, MAKE A REQUEST TO /USER/CURRENT FOR THEIR DETAILS
     if (token) {
       axios
-        .get("/user/current", {
+        .get("/current", {
           header: {
             Authorization: `Bearer ${token}`
           }
@@ -84,6 +84,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getCurrentUser();
     this.refresh();
   }
 
