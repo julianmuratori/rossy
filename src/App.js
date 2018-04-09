@@ -17,15 +17,21 @@ class App extends Component {
     paintingDetails: [],
     searchResults: [],
     userLists: {
-      Trees: [1, 2, 5],
-      Mountains: [3, 5, 7]
+      Trees: {
+        listId: 1,
+        listEpisodes: [1, 2, 5]
+      },
+      Mountains: {
+        listId: 2,
+        listEpisodes: [3, 5, 7]
+      }
     }
   };
 
   constructor() {
     super();
     this.returnedEpisodes = this.returnedEpisodes.bind(this);
-    this.listSelect = this.listSelect.bind(this)
+    this.addToList = this.addToList.bind(this)
   }
 
   // REFACTOR THIS INTO A SEPARATE COMPONENT AT SOME POINT
@@ -51,9 +57,20 @@ class App extends Component {
     this.setState({ searchResults });
   };
 
-  listSelect = (list, episode) => {
-    console.log(list);
-    console.log(episode);
+  addToList = (episodeIdAndSelectedList) => {
+    const { episodeId, selectedList } = episodeIdAndSelectedList
+    const newListAddition = Object.keys(this.state.userLists)
+    const existingLists = this.state.userLists
+    
+    if (newListAddition.includes(selectedList)) {
+      const list = selectedList
+      existingLists[list].listEpisodes.push(episodeId)
+    } else {
+      console.log('nope')
+    }
+      
+      
+    // console.log(newListAddition)
   };
 
   componentDidMount() {
@@ -73,7 +90,7 @@ class App extends Component {
         <EpisodeSearchResults
           searchResults={searchResults}
           userLists={userLists}
-          listSelect={this.listSelect}
+          addToList={this.addToList}
         />
       </MuiThemeProvider>
     );

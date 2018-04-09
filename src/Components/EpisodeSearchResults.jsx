@@ -16,6 +16,7 @@ class EpisodeSearchResults extends Component {
 
     render() {
         const { results } = this.state;
+        const { userLists, addToList } = this.props;
         return (
           <List>
             {
@@ -23,8 +24,8 @@ class EpisodeSearchResults extends Component {
                     return <SingleSearchResult 
                         episode={result}
                         key={i}
-                        userLists={this.props.userLists}
-                        listSelect={this.props.listSelect}
+                        userLists={userLists}
+                        addToList={addToList}
                     />
                 })
             }
