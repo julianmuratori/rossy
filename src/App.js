@@ -3,9 +3,10 @@ import axios from "axios";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 // COMPONENTS
-// import UserLogin from "./Components/UserLogin";
+import UserLogin from "./Components/UserLogin";
 import DetailSearch from './Components/DetailSearch';
 import EpisodeSearchResults from './Components/EpisodeSearchResults';
+import MainDashboard from "./Components/MainDashboard";
 // import Episodes from './Components/Episodes';
 
 
@@ -54,17 +55,19 @@ class App extends Component {
   };
 
   returnedEpisodes = searchResults => {
-    this.setState({ searchResults });
-  };
+    this.setState({ searchResults })
+  }
 
+  // GRABS AN EPISODE'S ID AND ADDS IT TO THE SELECTED LIST
+  // IF THE EPISODE ID ALREADY EXISTS IN THAT LIST, SAY NO WAY JOSE
   addToList = (episodeIdAndSelectedList) => {
     const { episodeId, selectedList } = episodeIdAndSelectedList
     const newListAddition = Object.keys(this.state.userLists)
     const existingLists = this.state.userLists
     
     if (newListAddition.includes(selectedList) && !existingLists[selectedList].listEpisodes.includes(episodeId)) {
-      const list = selectedList
-      existingLists[list].listEpisodes.push(episodeId)
+      // const list = selectedList
+      existingLists[selectedList].listEpisodes.push(episodeId)
     }
   };
 
@@ -77,7 +80,7 @@ class App extends Component {
     return (
       <MuiThemeProvider className="App">
         {/* <UserLogin /> */}
-        <DetailSearch
+        {/* <DetailSearch
           details={paintingDetails}
           episodes={episodes}
           returnedEpisodes={this.returnedEpisodes}
@@ -86,7 +89,8 @@ class App extends Component {
           searchResults={searchResults}
           userLists={userLists}
           addToList={this.addToList}
-        />
+        /> */}
+        <MainDashboard />
       </MuiThemeProvider>
     );
   }
