@@ -62,15 +62,11 @@ class App extends Component {
     const newListAddition = Object.keys(this.state.userLists)
     const existingLists = this.state.userLists
     
-    if (newListAddition.includes(selectedList)) {
+    if (newListAddition.includes(selectedList) && !existingLists[selectedList].listEpisodes.includes(episodeId)) {
       const list = selectedList
       existingLists[list].listEpisodes.push(episodeId)
-    } else {
-      console.log('nope')
     }
-      
-      
-    // console.log(newListAddition)
+    
   };
 
   componentDidMount() {
