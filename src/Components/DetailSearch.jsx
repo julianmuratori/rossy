@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import DetailButton from './DetailButton';
+import EpisodeSearchResults from './EpisodeSearchResults'
+import DetailButton from './DetailButton'
 import RaisedButton from 'material-ui/RaisedButton'
 
 class DetailSearch extends Component {
@@ -45,6 +46,7 @@ class DetailSearch extends Component {
   };
 
   render() {
+    const { searchResults, userLists } = this.props;
 
     const styles = {
       form: {
@@ -55,6 +57,7 @@ class DetailSearch extends Component {
       }
     }
     return (
+      <div>
       <form style={styles.form} onSubmit={e => this.submitSearch(e)}>
         {this.props.details.map(detail => {
           return (
@@ -67,6 +70,12 @@ class DetailSearch extends Component {
         })}
         <RaisedButton type="submit">Submit</RaisedButton>
       </form>
+        <EpisodeSearchResults 
+          searchResults={searchResults}
+          userLists={userLists}
+          addToList={this.props.addToList}   
+        />
+      </div>
     );
   }
 }

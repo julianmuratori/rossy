@@ -9,7 +9,7 @@ import Tab from 'material-ui/Tabs/Tab'
 
 // Components
 import DetailSearch from './DetailSearch'
-import EpisodeSearchResults from './EpisodeSearchResults'
+import MyLists from './MyLists'
 
 class Dashboard extends Component {
     render() {
@@ -38,14 +38,19 @@ class Dashboard extends Component {
                     </AppBar>
 
                     <Route exact path="/mylists"
-                        render={() => <h1>my lists</h1>}
+                        render={() => <MyLists 
+                                userLists={userLists}
+                            />}
                         />
 
                     <Route exact path="/newlist"
                             render={() => <DetailSearch
                                 details={details}
                                 episodes={episodes}
-                                returnedEpisodes={this.returnedEpisodes}
+                                returnedEpisodes={this.props.returnedEpisodes}
+                                searchResults={searchResults}
+                                userLists={userLists}
+                                addToList={this.props.addToList}
                             />}
                         />
                     

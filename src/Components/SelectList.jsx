@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SelectField from 'material-ui/SelectField'
-import Subheader from 'material-ui/Subheader'
 import MenuItem from 'material-ui/MenuItem'
 
 class SelectList extends Component {

@@ -18,7 +18,7 @@ class DetailButton extends Component {
       const { isChecked } = this.state;
       const styles = {
           display: 'block',
-          width: 'auto'
+          width: '250px'
       }
     return (
         <Checkbox 

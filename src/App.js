@@ -82,23 +82,13 @@ class App extends Component {
         
         <Router>
           <div>
-          {/* <DetailSearch
-            details={paintingDetails}
-            episodes={episodes}
-            returnedEpisodes={this.returnedEpisodes}
-            />
-            <EpisodeSearchResults
-            searchResults={searchResults}
-            userLists={userLists}
-            addToList={this.addToList}
-          /> */}
-            <Switch>
+          <Switch>
               <Route
                 exact
                 path="/login"
                 render={() =>
                   this.state.user ? 
-                    <Redirect to="/" /> : 
+                    <Redirect to="/mylists" /> : 
                     <Login />
                 }
               />
@@ -107,7 +97,7 @@ class App extends Component {
                 path="/signup"
                 render={() =>
                   this.state.user ? 
-                    <Redirect to="/" /> : 
+                    <Redirect to="/mylists" /> : 
                     <Signup />
                 }
               />
