@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from "react"
+import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom"
+import axios from "axios"
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 // COMPONENTS
-import UserLogin from "./Components/UserLogin";
-import DetailSearch from './Components/DetailSearch';
-import EpisodeSearchResults from './Components/EpisodeSearchResults';
-import MainDashboard from "./Components/MainDashboard";
-// import Episodes from './Components/Episodes';
+import Login from "./Components/Login"
+import Dashboard from "./Components/Dashboard"
+import Signup from './Components/Signup'
 
 
 
@@ -77,20 +76,58 @@ class App extends Component {
 
   render() {
     const { paintingDetails, episodes, searchResults, userLists } = this.state;
+
     return (
       <MuiThemeProvider className="App">
-        {/* <UserLogin /> */}
-        {/* <DetailSearch
-          details={paintingDetails}
-          episodes={episodes}
-          returnedEpisodes={this.returnedEpisodes}
-        />
-        <EpisodeSearchResults
-          searchResults={searchResults}
-          userLists={userLists}
-          addToList={this.addToList}
-        /> */}
-        <MainDashboard />
+        
+        <Router>
+          <div>
+          {/* <DetailSearch
+            details={paintingDetails}
+            episodes={episodes}
+            returnedEpisodes={this.returnedEpisodes}
+            />
+            <EpisodeSearchResults
+            searchResults={searchResults}
+            userLists={userLists}
+            addToList={this.addToList}
+          /> */}
+            <Switch>
+              <Route
+                exact
+                path="/login"
+                render={() =>
+                  this.state.user ? 
+                    <Redirect to="/" /> : 
+                    <Login />
+                }
+              />
+              <Route
+                exact
+                path="/signup"
+                render={() =>
+                  this.state.user ? 
+                    <Redirect to="/" /> : 
+                    <Signup />
+                }
+              />
+              <Route
+                path="/"
+                render={() =>
+                  this.state.user ? 
+                    <Dashboard 
+                      details={paintingDetails}
+                      episodes={episodes}
+                      returnedEpisodes={this.returnedEpisodes}
+                      searchResults={searchResults}
+                      userLists={userLists}
+                      addToList={this.addToList}
+                    /> : <Redirect to="/login" />
+                }
+              />
+            </Switch>
+          </div>
+        </Router>
       </MuiThemeProvider>
     );
   }

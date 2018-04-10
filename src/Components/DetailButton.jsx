@@ -16,8 +16,17 @@ class DetailButton extends Component {
 
   render() {
       const { isChecked } = this.state;
+      const styles = {
+          display: 'block',
+          width: 'auto'
+      }
     return (
-        <Checkbox onCheck={e => this.checked(e)} checked={isChecked} label={this.props.detail} />
+        <Checkbox 
+            onCheck={e => this.checked(e)} 
+            checked={isChecked} 
+            label={this.props.detail}
+            style={styles}
+            />
     );
   }
 }

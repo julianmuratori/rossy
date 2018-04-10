@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DetailButton from './DetailButton';
-// import { Button } from 'bloomer';
 import RaisedButton from 'material-ui/RaisedButton'
 
 class DetailSearch extends Component {
@@ -46,8 +45,17 @@ class DetailSearch extends Component {
   };
 
   render() {
+
+    const styles = {
+      form: {
+        width: '980px',
+        margin: '0 auto',
+        display: 'flex',
+        flexWrap: 'wrap'
+      }
+    }
     return (
-      <form onSubmit={e => this.submitSearch(e)}>
+      <form style={styles.form} onSubmit={e => this.submitSearch(e)}>
         {this.props.details.map(detail => {
           return (
             <DetailButton
