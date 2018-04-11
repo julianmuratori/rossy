@@ -23,7 +23,7 @@ class Dashboard extends Component {
             }
         }
 
-        const { details, episodes, searchResults, userLists } = this.props;
+        const { details, episodes, searchResults, userLists, removeFromList } = this.props;
 
         return (
             <div>
@@ -41,6 +41,7 @@ class Dashboard extends Component {
                         render={() => <MyLists 
                                 userLists={userLists}
                                 episodes={episodes}
+                                removeFromList={removeFromList}
                             />}
                         />
 

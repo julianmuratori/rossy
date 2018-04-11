@@ -32,6 +32,7 @@ class App extends Component {
     super();
     this.returnedEpisodes = this.returnedEpisodes.bind(this);
     this.addToList = this.addToList.bind(this)
+    this.removeFromList = this.removeFromList.bind(this)
   }
 
   // REFACTOR THIS INTO A SEPARATE COMPONENT AT SOME POINT
@@ -69,6 +70,10 @@ class App extends Component {
       existingLists[selectedList].listEpisodes.push(episodeId)
     }
   };
+
+  removeFromList = (event) => {
+    console.log('removed')
+  }
 
   componentDidMount() {
     this.refresh();
@@ -112,6 +117,7 @@ class App extends Component {
                       searchResults={searchResults}
                       userLists={userLists}
                       addToList={this.addToList}
+                      removeFromList={this.removeFromList}
                     /> : <Redirect to="/login" />
                 }
               />

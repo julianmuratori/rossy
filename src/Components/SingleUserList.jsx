@@ -30,23 +30,28 @@ class SingleUserList extends Component {
         })
     }
 
+    handleSubmit(event) {
+        event.preventDefault()
+        this.props.removeFromList(event)
+    }
+
     
 
     renderEpisode(key) {
         const { list, episodes } = this.state
-        const episode = episodes.find(x => x._id === key)        
-        // const episode = episodes.find()
+        const episode = episodes.find(x => x._id === key)    
+
         if (this.state.open === false) {
             return <ListItem key={key} primaryText={'episode'} />
         } else {
             return (
+                <form action="" onSubmit={this.handleSubmit}>
                 <List key={key}>
-                    <ListItem primaryText={episode.title} />
-                    <ListItem primaryText={`Season ${episode.season}, Episode ${episode.episodeNumber}`} />
-                    <ListItem 
-                        primaryText={episode.title} />
-                    <RaisedButton>Remove?</RaisedButton>
+                    <ListItem key={episode.title} primaryText={episode.title} />
+                    <ListItem key={episode.season} primaryText={`Season ${episode.season}, Episode ${episode.episodeNumber}`} />
                 </List>
+                <RaisedButton type="submit" key={episode.details[0]}>Remove?</RaisedButton>
+                </form>
             )
     }
 }

@@ -6,7 +6,7 @@ class MyLists extends Component {
 
     render() {
 
-        const { userLists, episodes } = this.props
+        const { userLists, episodes, removeFromList } = this.props
 
         return (
             <List>
@@ -18,6 +18,7 @@ class MyLists extends Component {
                                     title={userList}
                                     episodes={episodes}
                                     list={userLists[userList].listEpisodes}
+                                    removeFromList={removeFromList}
                             />
                         })
                 }        
