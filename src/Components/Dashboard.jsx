@@ -40,6 +40,7 @@ class Dashboard extends Component {
                     <Route exact path="/mylists"
                         render={() => <MyLists 
                                 userLists={userLists}
+                                episodes={episodes}
                             />}
                         />
 

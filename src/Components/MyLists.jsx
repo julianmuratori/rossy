@@ -3,9 +3,10 @@ import SingleUserList from './SingleUserList'
 import List from 'material-ui/List'
 
 class MyLists extends Component {
+
     render() {
 
-        const { userLists } = this.props
+        const { userLists, episodes } = this.props
 
         return (
             <List>
@@ -15,6 +16,7 @@ class MyLists extends Component {
                             return <SingleUserList
                                     key={i}
                                     title={userList}
+                                    episodes={episodes}
                                     list={userLists[userList].listEpisodes}
                             />
                         })

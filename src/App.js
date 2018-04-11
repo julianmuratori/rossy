@@ -19,11 +19,11 @@ class App extends Component {
     userLists: {
       Trees: {
         listId: 1,
-        listEpisodes: [1, 2, 5]
+        listEpisodes: ['5aa983c0da22f444aca48359', '5aa983c0da22f444aca48359']
       },
       Mountains: {
         listId: 2,
-        listEpisodes: [3, 5, 7]
+        listEpisodes: ['5aa9867dda22f444aca48366', '5aa983c0da22f444aca48359']
       }
     }
   };
