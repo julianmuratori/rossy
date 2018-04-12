@@ -12,7 +12,7 @@ import Signup from './Components/Signup'
 
 class App extends Component {
   state = {
-    user: {},
+    user: null,
     episodes: [],
     paintingDetails: [],
     searchResults: [],
@@ -71,12 +71,17 @@ class App extends Component {
     }
   };
 
+  // REMOVE AN EPISODE FROM A LIST
   removeFromList = (event) => {
     console.log('removed')
   }
 
   componentDidMount() {
     this.refresh();
+  }
+
+  setUser = user => {
+    this.setState({ user })
   }
 
   render() {
@@ -103,7 +108,7 @@ class App extends Component {
                 render={() =>
                   this.state.user ? 
                     <Redirect to="/mylists" /> : 
-                    <Signup />
+                    <Signup setUser={this.setUser}/>
                 }
               />
               <Route

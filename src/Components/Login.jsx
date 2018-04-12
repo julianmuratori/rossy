@@ -2,36 +2,54 @@ import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 
-// import axios from 'axios';
+import axios from 'axios';
 
 class Login extends Component {
-    render() {
-        return (
-            // <form action="">
-            //     <input type="text" placeholder="Enter Email"/>
-            //     <input type="text" placeholder="password"/>
-            // </form>
-            <form>
-                <TextField
-                    hintText="Enter your Username"
-                    floatingLabelText="Username"
-                    // onChange={(event, newValue) => this.setState({ username: newValue })}
-                />
-                <br />
-                <TextField
-                    type="password"
-                    hintText="Enter your Password"
-                    floatingLabelText="Password"
-                    // onChange={(event, newValue) => this.setState({ password: newValue })}
-                />
-                <br />
-                <RaisedButton label="Submit" primary={true} 
-                // style={style} 
-                // onClick={(event) => this.handleClick(event)}
-                 />
-            </form>
-        )
-    }
+  state = {
+    email: "",
+    password: ""
+  };
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { email, password } = this.state;
+    axios
+        // 1. POST to /auth/login, passing in the email and password in the body      
+        .post("/login", {
+            email,
+            password
+        })
+        .then(res => {
+            console.log(res.data);
+        });
+    };
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <TextField
+          hintText="Enter your Username"
+          floatingLabelText="Username"
+          name="email"
+          onChange={this.handleChange}
+        />
+        <br />
+        <TextField
+          type="password"
+          hintText="Enter your Password"
+          name="password"
+          floatingLabelText="Password"
+          onChange={this.handleChange}
+        />
+        <br />
+        <RaisedButton label="Submit" type="submit" primary={true} />
+      </form>
+    );
+  }
 }
 
 
