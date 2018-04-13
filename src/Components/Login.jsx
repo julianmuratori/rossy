@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import { setToken } from '../Services/tokenService'
 
 import axios from 'axios';
 
@@ -24,6 +25,13 @@ class Login extends Component {
             password
         })
         .then(res => {
+          if (res.status === 200) {
+            // 2. If we receive a successful response:
+            //  - grab the token from the response
+            const token = res.data.payload;
+            //  - store it in local storage
+            setToken(token);
+          }
             console.log(res.data);
         });
     };

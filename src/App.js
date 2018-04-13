@@ -2,11 +2,13 @@ import React, { Component } from "react"
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom"
 import axios from "axios"
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { getToken } from './Services/tokenService'
 
 // COMPONENTS
 import Login from "./Components/Login"
 import Dashboard from "./Components/Dashboard"
 import Signup from './Components/Signup'
+import Logout from './Components/Logout'
 
 
 
@@ -78,10 +80,33 @@ class App extends Component {
 
   componentDidMount() {
     this.refresh();
+    this.getCurrentUser();
   }
 
   setUser = user => {
     this.setState({ user })
+  }
+
+  // checks if current user has token in localStorage
+  // this function is called in componentDidMount
+  getCurrentUser = () => {
+    // 1. Try and retrieve the user's token
+    const token = getToken();
+    // 2. If they have a token, make a request to /user/current for their user details
+    if (token) {
+      axios
+        .get("/user/current", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(res => {
+          if (res.status === 200) {
+            const user = res.data.payload;
+            this.setState({ user });
+          }
+        });
+    }
   }
 
   render() {
