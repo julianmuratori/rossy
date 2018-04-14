@@ -31,6 +31,7 @@ class Login extends Component {
             const token = res.data.payload;
             //  - store it in local storage
             setToken(token);
+            this.props.getCurrentUser()
           }
             console.log(res.data);
         });

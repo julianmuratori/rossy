@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
 import SelectList from './SelectList'
 
+import TextField from 'material-ui/TextField'
+
 
 
 class SingleSearchResult extends Component {
@@ -13,7 +15,8 @@ class SingleSearchResult extends Component {
 
     state = {
       selectedList: 0,
-      episodeId: undefined      
+      episodeId: undefined,
+      newList: undefined      
     }
     
     listSelect = (selectedList) => {
@@ -24,8 +27,17 @@ class SingleSearchResult extends Component {
       
     }
 
+    handleChange = (e) => {
+      this.setState({ [e.target.name] : e.target.value })
+    }
+
     handleSubmit(event) {
       event.preventDefault()
+      const { newList } = this.state
+
+      if (newList !== undefined) {
+        this.setState({ selectedList: newList })
+      }
       const episodeIdAndSelectedList = this.state
       this.props.addToList(episodeIdAndSelectedList)
     }
@@ -51,6 +63,17 @@ class SingleSearchResult extends Component {
                 episodeId={_id} 
                 listSelect={this.listSelect}
                 />
+                {
+                    this.state.selectedList === "new" ? (
+                        <TextField 
+                        type="text"
+                        name="newList"
+                        onChange={this.handleChange}
+                        />
+                    ) : (
+                        null
+                    )
+                  }
               <RaisedButton type="submit">Add to List</RaisedButton>
             </form>
         )

@@ -10,7 +10,7 @@ class MyLists extends Component {
 
         return (
             <List>
-                {
+                {   userLists.length > 0 ? (
                     Object.keys(userLists)
                         .map((userList, i) => {
                             return <SingleUserList
@@ -21,6 +21,9 @@ class MyLists extends Component {
                                     removeFromList={removeFromList}
                             />
                         })
+                ) : (
+                    <h1>You don't have any lists yet!</h1>
+                )
                 }        
             </List>
         )

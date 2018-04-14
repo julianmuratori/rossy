@@ -10,7 +10,7 @@ class SelectList extends Component {
     }
     
     render() {
-        const userLists = this.props.userLists;        
+        const { userLists } = this.props        
         return (
             <div>
                 <SelectField

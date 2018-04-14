@@ -17,23 +17,12 @@ class App extends Component {
     user: null,
     episodes: [],
     paintingDetails: [],
-    searchResults: [],
-    userLists: {
-      Trees: {
-        listId: 1,
-        listEpisodes: ['5aa983c0da22f444aca48359', '5aa983c0da22f444aca48359']
-      },
-      Mountains: {
-        listId: 2,
-        listEpisodes: ['5aa9867dda22f444aca48366', '5aa983c0da22f444aca48359']
-      }
-    }
+    searchResults: []    
   };
 
   constructor() {
     super();
     this.returnedEpisodes = this.returnedEpisodes.bind(this);
-    this.addToList = this.addToList.bind(this)
     this.removeFromList = this.removeFromList.bind(this)
   }
 
@@ -60,18 +49,7 @@ class App extends Component {
     this.setState({ searchResults })
   }
 
-  // GRABS AN EPISODE'S ID AND ADDS IT TO THE SELECTED LIST
-  // IF THE EPISODE ID ALREADY EXISTS IN THAT LIST, SAY NO WAY JOSE
-  addToList = (episodeIdAndSelectedList) => {
-    const { episodeId, selectedList } = episodeIdAndSelectedList
-    const newListAddition = Object.keys(this.state.userLists)
-    const existingLists = this.state.userLists
-    
-    if (newListAddition.includes(selectedList) && !existingLists[selectedList].listEpisodes.includes(episodeId)) {
-      // const list = selectedList
-      existingLists[selectedList].listEpisodes.push(episodeId)
-    }
-  };
+ 
 
   // REMOVE AN EPISODE FROM A LIST
   removeFromList = (event) => {
@@ -79,8 +57,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.refresh();
     this.getCurrentUser();
+    this.refresh();
   }
 
   setUser = user => {
@@ -110,7 +88,7 @@ class App extends Component {
   }
 
   render() {
-    const { paintingDetails, episodes, searchResults, userLists } = this.state;
+    const { paintingDetails, episodes, searchResults } = this.state;
 
     return (
       <MuiThemeProvider className="App">
@@ -124,7 +102,7 @@ class App extends Component {
                 render={() =>
                   this.state.user ? 
                     <Redirect to="/mylists" /> : 
-                    <Login />
+                    <Login getCurrentUser={this.getCurrentUser}/>
                 }
               />
               <Route
@@ -141,12 +119,13 @@ class App extends Component {
                 render={() =>
                   this.state.user ? 
                     <Dashboard 
+                      setUser={this.setUser}
                       details={paintingDetails}
                       episodes={episodes}
                       returnedEpisodes={this.returnedEpisodes}
                       searchResults={searchResults}
-                      userLists={userLists}
-                      addToList={this.addToList}
+                      // userLists={userLists}
+                      // addToList={this.addToList}
                       removeFromList={this.removeFromList}
                     /> : <Redirect to="/login" />
                 }
